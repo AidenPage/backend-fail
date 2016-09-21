@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.springframework.web.bind.annotation.RestController;
+
 import java.util.Set;
 
 @RestController
@@ -23,7 +23,7 @@ public class CPUController{
 
     //-------------------Create a CPU--------------------------------------------------------
 
-    @RequestMapping(value = "/cpu/", method = RequestMethod.POST)
+    @RequestMapping(value = "/cpu/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
     public ResponseEntity<Void> createCPU(@RequestBody CPU cpu, UriComponentsBuilder ucBuilder) {
         cpuService.create(cpu);
         HttpHeaders headers = new HttpHeaders();
@@ -44,7 +44,7 @@ public class CPUController{
 
     //-------------------Retrieve All Stories--------------------------------------------------------
 
-    @RequestMapping(value = "/cpuAll/", method = RequestMethod.GET)
+    @RequestMapping(value = "/cpuAll/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Set<CPU>> getAllCPU() {
         Set<CPU> cpuAll = cpuService.readAll();
         if(cpuAll.isEmpty()){
@@ -63,7 +63,7 @@ public class CPUController{
         if (currentCPU==null) {
             return new ResponseEntity<CPU>(HttpStatus.NOT_FOUND);
         }
-        CPU updatedCPU = new CPU.Builder().CPU(currentCPU)
+        CPU updatedCPU = new CPU.Builder().copy(currentCPU)
                 .description(cpu.getDescription())
                 .price(cpu.getPrice())
                 .stock(cpu.getStock())
@@ -83,4 +83,6 @@ public class CPUController{
         cpuService.delete(cpu);
         return new ResponseEntity<CPU>(HttpStatus.NO_CONTENT);
     }
+    
+
 }

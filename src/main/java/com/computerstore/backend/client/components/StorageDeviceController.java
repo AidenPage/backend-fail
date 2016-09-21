@@ -23,7 +23,7 @@ public class StorageDeviceController{
 
     //-------------------Create a StorageDevice--------------------------------------------------------
 
-    @RequestMapping(value = "/storageDevice/", method = RequestMethod.POST)
+    @RequestMapping(value = "/storageDevice/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
     public ResponseEntity<Void> createStorageDevice(@RequestBody StorageDevice storageDevice, UriComponentsBuilder ucBuilder) {
         storageDeviceService.create(storageDevice);
         HttpHeaders headers = new HttpHeaders();

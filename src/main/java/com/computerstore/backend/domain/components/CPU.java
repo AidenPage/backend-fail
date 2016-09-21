@@ -18,13 +18,13 @@ import javax.persistence.Id;
 public class CPU implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
    // private String ProductNumber;
     private String Description;
     private int Stock;
     private double Price;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -47,7 +47,7 @@ public class CPU implements Serializable {
     private CPU(){
     }
 
-    private CPU(Builder builder) {
+    public CPU(Builder builder) {
         this.id = builder.id;
         //this.ProductNumber = builder.ProductNumber;
         this.Description = builder.Description;
@@ -56,7 +56,7 @@ public class CPU implements Serializable {
     }
 
     public static class Builder{
-        private Long id;
+        private long id;
         //private String ProductNumber;
         private String Description;
         private int Stock;
@@ -91,7 +91,7 @@ public class CPU implements Serializable {
             return this;
         }
 
-        public Builder CPU(CPU cpu) {
+        public Builder copy(CPU cpu) {
             this.id = cpu.id;
             //this.ProductNumber = cpu.ProductNumber;
             this.Description = cpu.Description;

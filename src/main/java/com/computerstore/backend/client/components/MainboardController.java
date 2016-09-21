@@ -3,8 +3,8 @@ package com.computerstore.backend.client.components;
 /**
  * Created by Aidem on 2016/04/17.
  */
-import com.computerstore.backend.domain.components.CPU;
-import com.computerstore.backend.services.components.CPUService;
+import com.computerstore.backend.domain.components.Mainboard;
+import com.computerstore.backend.services.components.MainboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,68 +19,68 @@ import java.util.Set;
 public class MainboardController{
  // Inject Service
     @Autowired
-    private CPUService mainboardService;
+    private MainboardService mainboardService;
 
-    //-------------------Create a CPU--------------------------------------------------------
+    //-------------------Create a Mainboard--------------------------------------------------------
 
-    @RequestMapping(value = "/mainboard/", method = RequestMethod.POST)
-    public ResponseEntity<Void> createCPU(@RequestBody CPU mainboard, UriComponentsBuilder ucBuilder) {
+    @RequestMapping(value = "/mainboard/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
+    public ResponseEntity<Void> createMainboard(@RequestBody Mainboard mainboard, UriComponentsBuilder ucBuilder) {
         mainboardService.create(mainboard);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/mainboard/{id}").buildAndExpand(mainboard.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
-    //-------------------Retrieve Single CPU--------------------------------------------------------
+    //-------------------Retrieve Single Mainboard--------------------------------------------------------
     @RequestMapping(value = "/mainboard/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CPU> getCPU(@PathVariable("id") long id) {
-        CPU mainboard = mainboardService.readById(id);
+    public ResponseEntity<Mainboard> getMainboard(@PathVariable("id") long id) {
+        Mainboard mainboard = mainboardService.readById(id);
         if (mainboard == null) {
-            return new ResponseEntity<CPU>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Mainboard>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<CPU>(mainboard, HttpStatus.OK);
+        return new ResponseEntity<Mainboard>(mainboard, HttpStatus.OK);
     }
 
 
     //-------------------Retrieve All Stories--------------------------------------------------------
 
     @RequestMapping(value = "/mainboardAll/", method = RequestMethod.GET)
-    public ResponseEntity<Set<CPU>> getAllMainboard() {
-        Set<CPU> mainboardAll = mainboardService.readAll();
+    public ResponseEntity<Set<Mainboard>> getAllMainboard() {
+        Set<Mainboard> mainboardAll = mainboardService.readAll();
         if(mainboardAll.isEmpty()){
-            return new ResponseEntity<Set<CPU>>(HttpStatus.NO_CONTENT);// OR HttpStatus.NOT_FOUND
+            return new ResponseEntity<Set<Mainboard>>(HttpStatus.NO_CONTENT);// OR HttpStatus.NOT_FOUND
         }
-        return new ResponseEntity<Set<CPU>>(mainboardAll, HttpStatus.OK);
+        return new ResponseEntity<Set<Mainboard>>(mainboardAll, HttpStatus.OK);
     }
 
-    //------------------- Update a CPU --------------------------------------------------------
+    //------------------- Update a Mainboard --------------------------------------------------------
 
     @RequestMapping(value = "/mainboard/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<CPU> updateCPU(@PathVariable("id") long id, @RequestBody CPU mainboard) {
+    public ResponseEntity<Mainboard> updateMainboard(@PathVariable("id") long id, @RequestBody Mainboard mainboard) {
 
-        CPU currentCPU = mainboardService.readById(id);
+        Mainboard currentMainboard = mainboardService.readById(id);
 
-        if (currentCPU==null) {
-            return new ResponseEntity<CPU>(HttpStatus.NOT_FOUND);
+        if (currentMainboard==null) {
+            return new ResponseEntity<Mainboard>(HttpStatus.NOT_FOUND);
         }
-        CPU updatedCPU = new CPU.Builder().CPU(currentCPU)
+        Mainboard updatedMainboard = new Mainboard.Builder().Mainboard(currentMainboard)
                 .description(mainboard.getDescription())
                 .price(mainboard.getPrice())
                 .stock(mainboard.getStock())
                 .build();
-        mainboardService.update(updatedCPU);
-        return new ResponseEntity<CPU>(updatedCPU, HttpStatus.OK);
+        mainboardService.update(updatedMainboard);
+        return new ResponseEntity<Mainboard>(updatedMainboard, HttpStatus.OK);
     }
 
-    //------------------- Delete a CPU --------------------------------------------------------
+    //------------------- Delete a Mainboard --------------------------------------------------------
 
     @RequestMapping(value = "/mainboard/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<CPU> deleteCPU(@PathVariable("id") long id) {
-        CPU mainboard = mainboardService.readById(id);
+    public ResponseEntity<Mainboard> deleteMainboard(@PathVariable("id") long id) {
+        Mainboard mainboard = mainboardService.readById(id);
         if (mainboard == null) {
-            return new ResponseEntity<CPU>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Mainboard>(HttpStatus.NOT_FOUND);
         }
         mainboardService.delete(mainboard);
-        return new ResponseEntity<CPU>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Mainboard>(HttpStatus.NO_CONTENT);
     }
 }

@@ -23,7 +23,7 @@ public class DisplayCardController{
 
     //-------------------Create a DisplayCard--------------------------------------------------------
 
-    @RequestMapping(value = "/displayCard/", method = RequestMethod.POST)
+    @RequestMapping(value = "/displayCard/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
     public ResponseEntity<Void> createDisplayCard(@RequestBody DisplayCard displayCard, UriComponentsBuilder ucBuilder) {
         displayCardService.create(displayCard);
         HttpHeaders headers = new HttpHeaders();

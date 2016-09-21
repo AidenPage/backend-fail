@@ -5,62 +5,80 @@ package backend.client;
  * @author Aidem
  */
 
+import com.computerstore.backend.App;
 import com.computerstore.backend.domain.components.CPU;
-import com.computerstore.backend.services.components.CPUService;
-import java.util.Arrays;
-import java.util.Set;
-import static org.hamcrest.Matchers.*;
+import com.computerstore.backend.factories.components.CPUFactory;
+
+import java.net.URI;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.Mockito.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.*;
-
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestContext;
+import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import org.springframework.util.Assert;
+import org.springframework.web.client.RestTemplate;
 
-//@WebAppConfiguration
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = App.class)
+@WebAppConfiguration
+@IntegrationTest({"server.port=8181"})
 public class CPUControllerTest {
-    //private MockMvc mockMvc;
- 
-    //@Autowired
-    //private CPUService cpuServiceMock;
+    final String BASE_URL = "http://localhost:8181/";
+    private RestTemplate template;
     
+     
     @Test
     public void readCPU() throws Exception {
-        CPU first = new CPU.Builder()
-                .description("intel")
-                .price(2999)
-                .stock(20)
-                .build();
 
-        CPU second = new CPU.Builder()
-                .description("AMD")
-                .price(1599)
-                .stock(15)
-                .build();
-        
-     Assert.hasText(second.getDescription(),"AMD");
-//        when(cpuServiceMock.readAll()).thenReturn( (Set<CPU>) Arrays.asList(first, second));
-//        
-//        mockMvc.perform(get("/cpuAll/"));
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(2)))
-//                .andExpect(jsonPath("$[0].description", is("intel")))
-//                .andExpect(jsonPath("$[0].price", is(2999)))
-//                .andExpect(jsonPath("$[0].stock", is(20)))
-//                
-//                .andExpect(jsonPath("$[1].description", is("intel")))
-//                .andExpect(jsonPath("$[0].price", is(1599)))
-//                .andExpect(jsonPath("$[0].stock", is(15)));
- 
-//        verify(cpuServiceMock, times(1)).readAll();
-//        verifyNoMoreInteractions(cpuServiceMock);
+         RestTemplate restTemplate = new RestTemplate();
+        CPU cpu = CPUFactory.getCPU("intel",2999.99,15);
+        URI uri = restTemplate.postForLocation(BASE_URL +"/cpu/",cpu,CPU.class);
+
     }
+    
+    @Test
+    public void test() throws Exception {
+    try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        } 
+        catch (ClassNotFoundException e) {
+            System.out.println("MySQL JDBC Driver not found !!");
+            return;
+        }
+        System.out.println("MySQL JDBC Driver Registered!");
+        Connection connection = null;
+        try {
+            connection = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/computerstoredb", "root", "");
+            System.out.println("SQL Connection to database established!");
+ 
+        } catch (SQLException e) {
+            System.out.println("Connection Failed! Check output console");
+            return;
+        } finally {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+                System.out.println("Connection closed !!");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 }
+    
+@Before
+ public void setUp() throws Exception {
+  template = new TestRestTemplate();
+
+ }
+}
+
+ 
+ 

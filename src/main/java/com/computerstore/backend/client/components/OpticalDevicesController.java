@@ -23,7 +23,7 @@ public class OpticalDevicesController{
 
     //-------------------Create a OpticalDevices--------------------------------------------------------
 
-    @RequestMapping(value = "/opticalDevices/", method = RequestMethod.POST)
+    @RequestMapping(value = "/opticalDevices/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
     public ResponseEntity<Void> createOpticalDevices(@RequestBody OpticalDevices opticalDevices, UriComponentsBuilder ucBuilder) {
         opticalDevicesService.create(opticalDevices);
         HttpHeaders headers = new HttpHeaders();

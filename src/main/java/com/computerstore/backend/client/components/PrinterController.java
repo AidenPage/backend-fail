@@ -23,7 +23,7 @@ public class PrinterController{
 
     //-------------------Create a Printer--------------------------------------------------------
 
-    @RequestMapping(value = "/printer/", method = RequestMethod.POST)
+    @RequestMapping(value = "/printer/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
     public ResponseEntity<Void> createPrinter(@RequestBody Printer printer, UriComponentsBuilder ucBuilder) {
         printerService.create(printer);
         HttpHeaders headers = new HttpHeaders();

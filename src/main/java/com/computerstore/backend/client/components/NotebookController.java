@@ -23,7 +23,7 @@ public class NotebookController{
 
     //-------------------Create a Notebook--------------------------------------------------------
 
-    @RequestMapping(value = "/notebook/", method = RequestMethod.POST)
+    @RequestMapping(value = "/notebook/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
     public ResponseEntity<Void> createNotebook(@RequestBody Notebook notebook, UriComponentsBuilder ucBuilder) {
         notebookService.create(notebook);
         HttpHeaders headers = new HttpHeaders();

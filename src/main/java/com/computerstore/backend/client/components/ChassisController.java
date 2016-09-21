@@ -23,7 +23,7 @@ public class ChassisController{
 
     //-------------------Create a Chassis--------------------------------------------------------
 
-    @RequestMapping(value = "/chassis/", method = RequestMethod.POST)
+    @RequestMapping(value = "/chassis/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
     public ResponseEntity<Void> createChassis(@RequestBody Chassis chassis, UriComponentsBuilder ucBuilder) {
         chassisService.create(chassis);
         HttpHeaders headers = new HttpHeaders();

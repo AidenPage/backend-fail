@@ -23,7 +23,7 @@ public class PCUController{
 
     //-------------------Create a PCU--------------------------------------------------------
 
-    @RequestMapping(value = "/pcu/", method = RequestMethod.POST)
+    @RequestMapping(value = "/pcu/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
     public ResponseEntity<Void> createPCU(@RequestBody PCU pcu, UriComponentsBuilder ucBuilder) {
         pcuService.create(pcu);
         HttpHeaders headers = new HttpHeaders();

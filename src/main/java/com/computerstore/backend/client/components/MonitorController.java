@@ -23,7 +23,7 @@ public class MonitorController{
 
     //-------------------Create a Monitor--------------------------------------------------------
 
-    @RequestMapping(value = "/monitor/", method = RequestMethod.POST)
+    @RequestMapping(value = "/monitor/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
     public ResponseEntity<Void> createMonitor(@RequestBody Monitor monitor, UriComponentsBuilder ucBuilder) {
         monitorService.create(monitor);
         HttpHeaders headers = new HttpHeaders();

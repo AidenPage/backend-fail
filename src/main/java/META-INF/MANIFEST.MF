@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Class-Path: hibernate-validator-5.2.4.Final.jar spring-data-commons-1.
+ 12.2.RELEASE.jar tomcat-jdbc-8.5.4.jar spring-orm-4.3.2.RELEASE.jar d
+ om4j-1.6.1.jar spring-boot-autoconfigure-1.4.0.RELEASE.jar hamcrest-c
+ ore-1.3.jar spring-core-4.3.2.RELEASE.jar logback-classic-1.1.7.jar t
+ omcat-embed-websocket-8.5.4.jar spring-boot-starter-jdbc-1.4.0.RELEAS
+ E.jar spring-boot-starter-aop-1.4.0.RELEASE.jar antlr-2.7.7.jar jacks
+ on-core-2.8.1.jar spring-boot-starter-1.4.0.RELEASE.jar json-20160810
+ .jar hibernate-jpa-2.1-api-1.0.0.Final.jar spring-webmvc-4.3.2.RELEAS
+ E.jar validation-api-1.1.0.Final.jar commons-lang3-3.4.jar spring-boo
+ t-1.4.0.RELEASE.jar tomcat-embed-el-8.5.4.jar jackson-annotations-2.8
+ .1.jar spring-data-jpa-1.10.2.RELEASE.jar slf4j-api-1.7.21.jar spring
+ -expression-4.3.2.RELEASE.jar junit-4.12.jar hibernate-commons-annota
+ tions-5.0.1.Final.jar spring-messaging-4.3.2.RELEASE.jar mysql-connec
+ tor-java-6.0.3.jar hibernate-core-5.0.9.Final.jar spring-boot-starter
+ -websocket-1.4.0.RELEASE.jar javassist-3.20.0-GA.jar spring-plugin-co
+ re-1.2.0.RELEASE.jar log4j-over-slf4j-1.7.21.jar classmate-1.3.1.jar 
+ xml-apis-1.4.01.jar spring-boot-starter-data-jpa-1.4.0.RELEASE.jar jc
+ l-over-slf4j-1.7.21.jar aspectjweaver-1.8.9.jar snakeyaml-1.17.jar ja
+ vax.transaction-api-1.2.jar spring-boot-starter-hateoas-1.4.0.RELEASE
+ .jar jboss-logging-3.3.0.Final.jar spring-websocket-4.3.2.RELEASE.jar
+  gson-2.4.jar spring-tx-4.3.2.RELEASE.jar hibernate-entitymanager-5.0
+ .9.Final.jar logback-core-1.1.7.jar spring-boot-starter-tomcat-1.4.0.
+ RELEASE.jar jackson-databind-2.8.1.jar tomcat-embed-core-8.5.4.jar to
+ mcat-juli-8.5.4.jar spring-aspects-4.3.2.RELEASE.jar spring-jdbc-4.3.
+ 2.RELEASE.jar spring-boot-starter-web-1.4.0.RELEASE.jar spring-hateoa
+ s-0.20.0.RELEASE.jar spring-context-4.3.2.RELEASE.jar spring-beans-4.
+ 3.2.RELEASE.jar spring-web-4.3.2.RELEASE.jar jandex-2.0.0.Final.jar j
+ ul-to-slf4j-1.7.21.jar spring-aop-4.3.2.RELEASE.jar spring-boot-start
+ er-logging-1.4.0.RELEASE.jar
+Main-Class: com.computerstore.backend.App
+

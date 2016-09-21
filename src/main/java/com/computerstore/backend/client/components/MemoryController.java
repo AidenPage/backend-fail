@@ -23,7 +23,7 @@ public class MemoryController{
 
     //-------------------Create a Memory--------------------------------------------------------
 
-    @RequestMapping(value = "/memory/", method = RequestMethod.POST)
+    @RequestMapping(value = "/memory/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
     public ResponseEntity<Void> createMemory(@RequestBody Memory memory, UriComponentsBuilder ucBuilder) {
         memoryService.create(memory);
         HttpHeaders headers = new HttpHeaders();

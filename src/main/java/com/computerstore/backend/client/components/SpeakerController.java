@@ -23,7 +23,7 @@ public class SpeakerController{
 
     //-------------------Create a Speaker--------------------------------------------------------
 
-    @RequestMapping(value = "/speaker/", method = RequestMethod.POST)
+    @RequestMapping(value = "/speaker/",consumes = MediaType.APPLICATION_JSON_VALUE , method = RequestMethod.POST)
     public ResponseEntity<Void> createSpeaker(@RequestBody Speaker speaker, UriComponentsBuilder ucBuilder) {
         speakerService.create(speaker);
         HttpHeaders headers = new HttpHeaders();
